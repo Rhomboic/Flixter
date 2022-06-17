@@ -16,6 +16,7 @@
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NSArray *movieArray;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, strong) UIAlertController *alertController;
 @end
 
 
@@ -34,6 +35,7 @@
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchData) forControlEvents:(UIControlEventValueChanged)];
+    [self.activityIndicator setCenter:self.tableView.center];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     
     
@@ -47,9 +49,21 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
            if (error != nil) {
                NSLog(@"%@", [error localizedDescription]);
+               [self.activityIndicator stopAnimating];
+               [self.refreshControl endRefreshing];
+               UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Network Error"
+                   message:@"Could not connect to server."
+                   preferredStyle:UIAlertControllerStyleAlert];
+
+               UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Try Later" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {[self.refreshControl endRefreshing];}];
+
+               [alert addAction:defaultAction];
+               [self presentViewController:alert animated:YES completion:nil];
+               
+               
            }
            else {
-               [self.activityIndicator stopAnimating];
+               
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
 
 
@@ -60,9 +74,12 @@
                // TODO: Reload your table view data
                [self.tableView reloadData];
                [self.refreshControl endRefreshing];
+               [self.activityIndicator stopAnimating];
                
                
            }
+        
+        
         NSLog(@"Loaded!");
         
        }];
@@ -98,11 +115,10 @@
 //     Get the new view controller using [segue destinationViewController].
     UITableViewCell *cell = sender;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    
+        
+//     Pass the selected object to the new view controller.
     DetailsViewController *detailView = [segue destinationViewController];
     detailView.thisMovie = self.movieArray[indexPath.row];
-    
-//     Pass the selected object to the new view controller.
 }
 
 /*

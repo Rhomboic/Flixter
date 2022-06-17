@@ -8,6 +8,7 @@
 #import "FlixCollViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "CustomGridCell.h"
+#import "DetailsViewController.h"
 
 @interface FlixCollViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *movieCollView;
@@ -84,7 +85,19 @@
     return self.movieArray.count;
 
 }
-- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
+//- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+////    return _movieArray.count;
+//    return 1;
+//}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//     Get the new view controller using [segue destinationViewController].
+    UICollectionViewCell *cell = sender;
+    NSIndexPath *indexPath = [self.movieCollView indexPathForCell:cell];
+    
+    DetailsViewController *detailView = [segue destinationViewController];
+    detailView.thisMovie = self.movieArray[indexPath.row];
+    
+//     Pass the selected object to the new view controller.
 }
 @end
