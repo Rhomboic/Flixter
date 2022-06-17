@@ -1,4 +1,4 @@
-# Project 1 - **FLixtere*
+# Project 1 - **Flixter*
 
 **FLixter** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
