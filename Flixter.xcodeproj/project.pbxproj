@@ -21,6 +21,7 @@
 		4E70E5C0285A816200771048 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E70E5BF285A816200771048 /* CustomCell.m */; };
 		4E738CFA285BA5AA00BC3701 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E738CF9285BA5AA00BC3701 /* DetailsViewController.m */; };
 		4E738D00285BD80500BC3701 /* FlixCollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E738CFF285BD80500BC3701 /* FlixCollViewController.m */; };
+		4E738D03285BED0100BC3701 /* CustomGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E738D02285BED0100BC3701 /* CustomGridCell.m */; };
 		8FCC35A47010DD22031F921A /* Pods_Flixter_FlixterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FF35ED62B9BA2829C33BE77 /* Pods_Flixter_FlixterUITests.framework */; };
 		ACC1DE36E9B7A3704CC6ED80 /* Pods_Flixter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A25C9C45F4AEAB27CED5BE84 /* Pods_Flixter.framework */; };
 /* End PBXBuildFile section */
@@ -67,6 +68,8 @@
 		4E738CF9285BA5AA00BC3701 /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		4E738CFE285BD80500BC3701 /* FlixCollViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlixCollViewController.h; sourceTree = "<group>"; };
 		4E738CFF285BD80500BC3701 /* FlixCollViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlixCollViewController.m; sourceTree = "<group>"; };
+		4E738D01285BED0100BC3701 /* CustomGridCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomGridCell.h; sourceTree = "<group>"; };
+		4E738D02285BED0100BC3701 /* CustomGridCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomGridCell.m; sourceTree = "<group>"; };
 		6707CBD7E3205914D6EF98CA /* Pods-Flixter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flixter.release.xcconfig"; path = "Target Support Files/Pods-Flixter/Pods-Flixter.release.xcconfig"; sourceTree = "<group>"; };
 		72107242B113A7BD6B8B51ED /* Pods-Flixter-FlixterUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flixter-FlixterUITests.release.xcconfig"; path = "Target Support Files/Pods-Flixter-FlixterUITests/Pods-Flixter-FlixterUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7C76DD303281A123EF6618DD /* Pods-Flixter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flixter.debug.xcconfig"; path = "Target Support Files/Pods-Flixter/Pods-Flixter.debug.xcconfig"; sourceTree = "<group>"; };
@@ -148,6 +151,8 @@
 				4E70E586285A470500771048 /* SceneDelegate.h */,
 				4E70E587285A470500771048 /* SceneDelegate.m */,
 				4E70E58C285A470500771048 /* Main.storyboard */,
+				4E738D01285BED0100BC3701 /* CustomGridCell.h */,
+				4E738D02285BED0100BC3701 /* CustomGridCell.m */,
 				4E738CFE285BD80500BC3701 /* FlixCollViewController.h */,
 				4E738CFF285BD80500BC3701 /* FlixCollViewController.m */,
 				4E738CF8285BA5AA00BC3701 /* DetailsViewController.h */,
@@ -433,6 +438,7 @@
 				4E70E5C0285A816200771048 /* CustomCell.m in Sources */,
 				4E70E585285A470500771048 /* AppDelegate.m in Sources */,
 				4E738CFA285BA5AA00BC3701 /* DetailsViewController.m in Sources */,
+				4E738D03285BED0100BC3701 /* CustomGridCell.m in Sources */,
 				4E70E596285A470700771048 /* main.m in Sources */,
 				4E70E588285A470500771048 /* SceneDelegate.m in Sources */,
 				4E738D00285BD80500BC3701 /* FlixCollViewController.m in Sources */,

@@ -6,9 +6,13 @@
 //
 
 #import "FlixCollViewController.h"
+#import "UIImageView+AFNetworking.h"
+#import "CustomGridCell.h"
 
-@interface FlixCollViewController ()
-@property (weak, nonatomic) IBOutlet UICollectionView *movieCollectionView;
+@interface FlixCollViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@property (weak, nonatomic) IBOutlet UICollectionView *movieCollView;
+
+@property (nonatomic, strong) NSArray *movieArray;
 
 @end
 
@@ -16,8 +20,40 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.movieCollView.dataSource = self;
+    [self fetchData];
     // Do any additional setup after loading the view.
+//    self.
 }
+
+- (void)fetchData {
+    NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=8079a45ef0970ad61179c51c1a1b1db4"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+           if (error != nil) {
+               NSLog(@"%@", [error localizedDescription]);
+           }
+           else {
+               NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+
+
+               // TODO: Get the array of movies
+               NSArray *movieArray = dataDictionary[@"results"];
+               // TODO: Store the movies in a property to use elsewhere
+               self.movieArray = movieArray;
+               // TODO: Reload your table view data
+               [self.movieCollView reloadData];
+               
+               
+               
+           }
+        NSLog(@"Loaded!");
+        
+       }];
+    [task resume];
+}
+
 
 /*
 #pragma mark - Navigation
@@ -28,5 +64,21 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    CustomGridCell *cell = [self.movieCollView dequeueReusableCellWithReuseIdentifier:@"CustomGridCell" forIndexPath:indexPath];
+    NSString *baseURL = @"https://image.tmdb.org/t/p/w500";
+    NSString *movieImageURL = [ baseURL stringByAppendingString: self.movieArray[indexPath.row][@"poster_path"] ];
+    [cell.posterImage setImageWithURL:[ NSURL URLWithString:movieImageURL ]];
+//    self.movieCollView.
+    
+    return cell;
+}
 
+- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.movieArray.count;
+
+}
+- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
 @end

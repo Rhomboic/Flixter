@@ -11,9 +11,10 @@
 #import "DetailsViewController.h"
 
 @interface FlixViewController () <UITableViewDataSource, UITableViewDelegate>
-@property (nonatomic, strong) NSArray *movieArray;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) NSArray *movieArray;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @end
 
@@ -28,11 +29,13 @@
     
     [self.activityIndicator startAnimating];
     [self fetchData];
-    [self.activityIndicator stopAnimating];
+    
+    
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchData) forControlEvents:(UIControlEventValueChanged)];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+    
     
     
 }
@@ -46,23 +49,22 @@
                NSLog(@"%@", [error localizedDescription]);
            }
            else {
+               [self.activityIndicator stopAnimating];
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-//               NSLog(@"%@", dataDictionary);
+
 
                // TODO: Get the array of movies
                NSArray *movieArray = dataDictionary[@"results"];
-//               for (NSString* currentString in movieArray)
-//               {
-//                   NSLog(@"%@", currentString);
-//                   NSLog(@"%@", @"\n\nlogged\n\n");
-//               }
                // TODO: Store the movies in a property to use elsewhere
                self.movieArray = movieArray;
                // TODO: Reload your table view data
                [self.tableView reloadData];
+               [self.refreshControl endRefreshing];
+               
+               
            }
         NSLog(@"Loaded!");
-        [self.refreshControl endRefreshing];
+        
        }];
     [task resume];
 }
