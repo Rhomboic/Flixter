@@ -69,7 +69,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="AIG-Ug-qSz"/>
+                    <tabBarItem key="tabBarItem" title="Now Playing" id="AIG-Ug-qSz"/>
                     <navigationItem key="navigationItem" title="Movies" id="krQ-ux-4WF"/>
                     <connections>
                         <outlet property="activityIndicator" destination="hKU-IV-k6z" id="05l-lw-Vcf"/>
@@ -157,7 +157,7 @@
             </objects>
             <point key="canvasLocation" x="19" y="1720"/>
         </scene>
-        <!--Item-->
+        <!--Movies-->
         <scene sceneID="mCf-3f-a2f">
             <objects>
                 <viewController id="JRF-4X-lrA" customClass="FlixCollViewController" sceneMemberID="viewController">
@@ -202,7 +202,7 @@
                         <viewLayoutGuide key="safeArea" id="EMg-cF-cXS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="U0F-5o-YgL"/>
+                    <tabBarItem key="tabBarItem" title="Movies" id="U0F-5o-YgL"/>
                     <connections>
                         <outlet property="movieCollView" destination="PVE-lY-qva" id="bWI-Ek-5Cu"/>
                     </connections>

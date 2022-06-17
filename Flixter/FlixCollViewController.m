@@ -11,7 +11,7 @@
 
 @interface FlixCollViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *movieCollView;
-
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NSArray *movieArray;
 
 @end
@@ -22,6 +22,11 @@
     [super viewDidLoad];
     self.movieCollView.dataSource = self;
     [self fetchData];
+    
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchData) forControlEvents:(UIControlEventValueChanged)];
+    [self.movieCollView insertSubview:self.refreshControl atIndex:0];
     // Do any additional setup after loading the view.
 //    self.
 }
@@ -44,6 +49,7 @@
                self.movieArray = movieArray;
                // TODO: Reload your table view data
                [self.movieCollView reloadData];
+               [self.refreshControl endRefreshing];
                
                
                
